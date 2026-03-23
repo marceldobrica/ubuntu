@@ -1,0 +1,276 @@
+{
+  "total": 2,
+  "metadata": {
+    "usecase": "ucam3"
+  },
+  "pagination": {
+    "size": 200,
+    "number": 1
+  },
+  "parameters": {
+    "filters": {
+      "availability": [
+        "booking"
+      ],
+      "box_id": [
+        "1156"
+      ],
+      "universe": [
+        "STA",
+        "STG",
+        "STW"
+      ],
+      "visibility": [
+        "live"
+      ]
+    },
+    "negated_filters": {
+      "box_id": null
+    },
+    "simulated_filters": {
+      "date": null
+    },
+    "text": ""
+  },
+  "facets": [
+    {
+      "filter": "aggregated_property_type",
+      "label": "Tipo de establecimiento",
+      "options": [
+        {
+          "value": "hotel",
+          "label": "Hotel",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "filter": "universe",
+      "label": "Tema",
+      "options": [
+        {
+          "value": "STA",
+          "label": "Estancias",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "filter": "person_count",
+      "label": "Número de personas",
+      "options": [
+        {
+          "value": "1\u003e",
+          "label": "1+ Personas",
+          "count": 2
+        },
+        {
+          "value": "2",
+          "label": "2 Personas",
+          "count": 2
+        },
+        {
+          "value": "2\u003e",
+          "label": "2+ Personas",
+          "count": 2
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item": {
+        "product": {
+          "price": "119.90",
+          "id": 1156
+        },
+        "reservable": false,
+        "ratingClass": null,
+        "rating": null,
+        "reviewsCount": 0,
+        "experiences": [
+          {
+            "cancellationPolicyDays": 3,
+            "components": [
+              "dos noches en habitación doble",
+              "dos desayunos continentales"
+            ],
+            "specialOffers": [],
+            "universe": {
+              "code": "STA",
+              "name": "Estancias"
+            },
+            "id": 143243,
+            "personCount": "2",
+            "price": {
+              "amount": 119.9,
+              "currency": "EUR"
+            }
+          }
+        ],
+        "experienceIds": [
+          143243
+        ],
+        "personCount": "2",
+        "partner": {
+          "tripadvisorRating": null,
+          "city": "Vitigudino",
+          "name": "C.T.R. La Tórtola",
+          "tripadvisorReviewCount": null,
+          "gps": {
+            "latitude": 41.0138071,
+            "longitude": -6.4357677
+          },
+          "id": "00146173",
+          "region": {
+            "code": "ES-CL",
+            "name": "Castilla y León"
+          },
+          "tripadvisorUrl": "",
+          "certification": [],
+          "hasVariablePricing": false,
+          "availabilityType": ""
+        },
+        "universe": {
+          "code": "STA",
+          "name": "Estancias"
+        },
+        "name": "C.T.R. La Tórtola",
+        "bookingFlow": "default",
+        "id": "1156143243",
+        "gallery": {
+          "items": [
+            "https://media.smartbox.com/pim/es000339402_original.jpg",
+            "https://media.smartbox.com/pim/es000653080_original.jpg",
+            "https://media.smartbox.com/pim/es000079664_original.eps"
+          ]
+        }
+      },
+      "contextual": {
+        "availability": {
+          "id": "",
+          "currency": "",
+          "extraPrice": null,
+          "roomStockType": "",
+          "duration": null,
+          "isSellable": false,
+          "priceBreakdown": {
+            "variablePriceDifference": 0,
+            "additionalNight": 0
+          },
+          "referencePrice": null
+        },
+        "instant_booking": false,
+        "distance_from_partner": null,
+        "up_to_percent": null
+      },
+      "debug": {
+        "sort": {
+          "_score": 0
+        },
+        "filter": {
+          "visibility": null,
+          "universe": null,
+          "availability": null
+        }
+      }
+    },
+    {
+      "item": {
+        "product": {
+          "price": "119.90",
+          "id": 1156
+        },
+        "reservable": false,
+        "ratingClass": "rating__star rating__star-4",
+        "rating": 7.66,
+        "reviewsCount": 4,
+        "experiences": [
+          {
+            "cancellationPolicyDays": 3,
+            "components": [
+              "dos noches en habitación doble",
+              "dos desayunos caseros"
+            ],
+            "specialOffers": [],
+            "universe": {
+              "code": "STA",
+              "name": "Estancias"
+            },
+            "id": 145886,
+            "personCount": "2",
+            "price": {
+              "amount": 119.9,
+              "currency": "EUR"
+            }
+          }
+        ],
+        "experienceIds": [
+          145886
+        ],
+        "personCount": "2",
+        "partner": {
+          "tripadvisorRating": 2.5,
+          "city": "Real Sitio de San Ildefonso",
+          "name": "Hostal La Chata",
+          "tripadvisorReviewCount": 269,
+          "gps": {
+            "latitude": 40.9002562,
+            "longitude": -4.0062488
+          },
+          "id": "00144387",
+          "region": {
+            "code": "ES-CL",
+            "name": "Castilla y León"
+          },
+          "tripadvisorUrl": "https://www.tripadvisor.com/Restaurant_Review-g897147-d986165-Reviews-La_Chata-La_Granja_de_San_Ildefonso_Province_of_Segovia_Castile_and_Leon.html?m=67180",
+          "certification": [],
+          "hasVariablePricing": false,
+          "availabilityType": ""
+        },
+        "universe": {
+          "code": "STA",
+          "name": "Estancias"
+        },
+        "name": "Hostal La Chata",
+        "bookingFlow": "default",
+        "id": "1156145886",
+        "gallery": {
+          "items": [
+            "https://media.smartbox.com/pim/00144387_3_Bedroom.jpg",
+            "https://media.smartbox.com/pim/00144387_2_Bedroom.jpg",
+            "https://media.smartbox.com/pim/00144387_4_Bathroom.jpg"
+          ]
+        }
+      },
+      "contextual": {
+        "availability": {
+          "id": "",
+          "currency": "",
+          "extraPrice": null,
+          "roomStockType": "",
+          "duration": null,
+          "isSellable": false,
+          "priceBreakdown": {
+            "variablePriceDifference": 0,
+            "additionalNight": 0
+          },
+          "referencePrice": null
+        },
+        "instant_booking": false,
+        "distance_from_partner": null,
+        "up_to_percent": null
+      },
+      "debug": {
+        "sort": {
+          "_score": 0
+        },
+        "filter": {
+          "visibility": null,
+          "universe": null,
+          "availability": null
+        }
+      }
+    }
+  ]
+}
