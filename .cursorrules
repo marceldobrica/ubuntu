@@ -1,0 +1,11 @@
+# Cursor project rules for this workspace
+
+- This repository documents a DevOps lab: GitLab, Runner, K3s, ArgoCD, Traefik, cert-manager, Cloudflare.
+- Documentation lives in `docs/` — one chapter per file (`NN-kebab-title.md`).
+- Keep edits concise, practical, and focused on Linux/Ubuntu 24.04 commands.
+- Preserve existing Markdown structure in each chapter (Overview, Prerequisites, Goals, Steps, Verify, Next).
+- Prefer copy-pasteable commands over abstract explanations; use `<PLACEHOLDER>` for environment-specific values.
+- Never commit secrets, tokens, or real passwords.
+- When adding content, update chapter status in `docs/README.md`.
+- Follow conventions in [WORKING.md](./WORKING.md).
+- Target audience: single MiniPC lab scaling to multi-node; Digi ISP + Cloudflare DNS assumed unless chapter says otherwise.
