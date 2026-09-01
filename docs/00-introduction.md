@@ -112,7 +112,7 @@ Add more subdomains per site as you onboard projects.
 | Ingress | Traefik | K3s-friendly, Let's Encrypt support |
 | TLS | cert-manager + Cloudflare DNS-01 | Wildcard certs for subdomains |
 | Edge DNS | Cloudflare | Domain, DNS, optional proxy |
-| ISP | Digi (Romania) | Dynamic/public IP — chapter 04 |
+| ISP | Digi (Romania) | Fixed public IP verified — chapter 04 |
 
 ## Network diagram
 

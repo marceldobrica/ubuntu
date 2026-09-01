@@ -2,7 +2,10 @@
 
 ## Overview
 
-Configure Digi (RCS & RDS) home internet for external access: public IP awareness, dynamic DNS or update strategy, router port forwarding to the MiniPC.
+Configure Digi (RCS & RDS) home internet for external access. This lab has a
+verified fixed public IP, and the Cloudflare Tunnel has also been tested
+successfully. The fixed IP supports direct access when required, while the
+Tunnel remains useful when inbound ports should not be exposed.
 
 ## Prerequisites
 
@@ -11,9 +14,9 @@ Configure Digi (RCS & RDS) home internet for external access: public IP awarenes
 
 ## Goals
 
-- [ ] Know whether you have public or CGNAT IP
-- [ ] Port forwarding 80/443 (and optionally 22) to MiniPC
-- [ ] Strategy for dynamic IP changes documented
+- [x] Fixed public IP verified
+- [x] Cloudflare Tunnel tested
+- [x] Access strategy documented
 
 ## Steps
 
@@ -38,9 +41,11 @@ Typical gateway: `192.168.1.1` or `192.168.0.1`
 
 Log in with credentials from the router sticker or Digi account.
 
-### 3. Port forwarding
+### 3. Optional port forwarding
 
-Forward to your MiniPC static IP (`192.168.1.100` in chapter 03):
+Port forwarding is optional when using Cloudflare Tunnel. If you choose direct
+inbound access, forward to your MiniPC static IP (`192.168.1.100` in chapter
+03):
 
 | External port | Internal IP | Internal port | Protocol | Purpose |
 |---------------|-------------|---------------|----------|---------|
@@ -50,23 +55,25 @@ Forward to your MiniPC static IP (`192.168.1.100` in chapter 03):
 
 **Security:** Prefer SSH via VPN or Cloudflare Tunnel rather than exposing port 22 publicly.
 
-### 4. Dynamic public IP handling
+### 4. Public IP and access strategy
 
-Digi residential IPs often change after reboot or periodically.
+The Digi connection has a verified fixed public IP. Direct public-IP access is
+therefore available when the required router port-forwarding rules are
+configured. Cloudflare Tunnel was also tested successfully and provides an
+alternative that does not require inbound ports.
 
 Options:
 
 **A. Cloudflare API update script (if using DNS-only A record)**
 
-Cron job on MiniPC to update Cloudflare when IP changes — see chapter 05.
+This is not needed while the fixed IP remains unchanged. The update script in
+chapter 05 has **not been tested yet** and should be tested after the remaining
+lab setup is finished.
 
-**B. Cloudflare Tunnel (recommended if CGNAT or unstable IP)**
+**B. Cloudflare Tunnel**
 
-No port forwarding required; outbound tunnel from MiniPC.
-
-**C. Digi fixed IP (paid option)**
-
-Simplest for production-like lab; ask Digi for business/static IP if available.
+The outbound tunnel from the MiniPC works without inbound port forwarding. It
+was tested successfully; see chapter 05.
 
 Document your current public IP:
 
@@ -86,10 +93,9 @@ nc -zv <PUBLIC_IP> 443
 
 ## Verify
 
-- [ ] Public IP documented
-- [ ] Port forward rules saved in router
-- [ ] External port check succeeds (or Tunnel plan noted for chapter 05)
-- [ ] CGNAT status known
+- [x] Fixed public IP verified
+- [x] Cloudflare Tunnel tested
+- [ ] Cloudflare API update script tested (follow-up after the lab setup)
 
 ## Troubleshooting
 

@@ -2,11 +2,23 @@
 
 ## Overview
 
-Configure Git for commits from the MiniPC and set up SSH keys for GitLab (chapter 08) and the GitOps repository.
+Configure Git on the workstation or server that will perform Git operations,
+and set up SSH keys for GitLab (chapter 08) and the GitOps repository.
 
 ## Prerequisites
 
 - [Chapter 06 — Docker](./06-docker.md)
+
+## Where to run these commands
+
+Unless stated otherwise, run the commands in this chapter **locally on the
+machine that will use Git**, normally your laptop. Do not SSH to the MiniPC
+just to run them. Repeat the setup on the MiniPC only if it will clone, pull,
+push, or deploy from GitLab.
+
+The Git identity identifies commits; the SSH key authenticates access to
+GitLab. If the MiniPC needs repository access, use a dedicated service account
+or deploy key with only the required permissions.
 
 ## Goals
 

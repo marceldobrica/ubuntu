@@ -12,6 +12,7 @@ Harden secrets management, Kubernetes RBAC, and network policies for the lab. De
 ## Goals
 
 - [ ] No plaintext secrets in Git
+- [ ] GitLab 2FA enforced for users
 - [ ] RBAC least privilege for CI/deploy accounts
 - [ ] Network policies limiting pod traffic
 - [ ] Regular secret rotation plan
@@ -117,7 +118,17 @@ GitLab Runner `privileged` is a known exception — isolate runner on dedicated 
 
 Cloudflare Zero Trust — require authentication for `argo.<YOUR_DOMAIN>` and GitLab admin paths.
 
-### 8. Audit and updates
+### 8. GitLab account protection
+
+Enable 2FA for the initial `root` account and every administrator immediately
+after GitLab installation (chapter 08). Create a separate named administrator
+for routine use, store recovery codes securely, and enforce 2FA for all users
+from **Admin Area → Settings → General → Sign-in restrictions**.
+
+Use SSH keys for Git operations from outside the intranet. For HTTPS Git access,
+use scoped, expiring personal access tokens rather than account passwords.
+
+### 9. Audit and updates
 
 ```bash
 kubectl auth can-i --list --as=system:serviceaccount:symfony:ci-deploy -n symfony
@@ -139,6 +150,7 @@ kubectl get sealedsecrets -A  # if using Sealed Secrets
 Pen-test checklist:
 
 - [ ] SSH password login disabled (chapter 02)
+- [ ] GitLab 2FA enabled and enforced (chapter 08)
 - [ ] ArgoCD not open without auth
 - [ ] DB ports not exposed via NodePort/LoadBalancer
 

@@ -16,10 +16,10 @@ Step-by-step guide to build a single-server development lab that grows into a ch
 | 00 | [Introduction](./00-introduction.md) | Draft |
 | 01 | [Ubuntu 24 Installation](./01-ubuntu-24-installation.md) | Draft |
 | 02 | [Initial Server Hardening](./02-initial-server-hardening.md) | Draft |
-| 03 | [Network Configuration](./03-network-configuration.md) | Draft |
-| 04 | [Digi Internet](./04-digi-internet.md) | Draft |
+| 03 | [Network Configuration](./03-network-configuration.md) | Complete |
+| 04 | [Digi Internet](./04-digi-internet.md) | Complete |
 | 05 | [Cloudflare](./05-cloudflare.md) | Draft |
-| 06 | [Docker](./06-docker.md) | Draft |
+| 06 | [Docker](./06-docker.md) | Complete |
 | 07 | [Git](./07-git.md) | Draft |
 | 08 | [GitLab CE](./08-gitlab-ce.md) | Draft |
 | 09 | [GitLab Runner](./09-gitlab-runner.md) | Draft |

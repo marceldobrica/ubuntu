@@ -12,10 +12,10 @@ Install Ubuntu Server 24.04 LTS on the MiniPC with UEFI, SSH server enabled, and
 
 ## Goals
 
-- [ ] Ubuntu Server 24.04 LTS installed
-- [ ] UEFI boot working
-- [ ] SSH server enabled
-- [ ] System fully updated
+- [x] Ubuntu Server 24.04 LTS installed
+- [x] UEFI boot working
+- [x] SSH server enabled
+- [x] System fully updated
 
 ## Steps
 

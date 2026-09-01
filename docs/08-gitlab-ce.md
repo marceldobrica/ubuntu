@@ -14,6 +14,7 @@ Install GitLab Community Edition with HTTPS at `gitlab.<YOUR_DOMAIN>`, bundled P
 
 - [ ] GitLab CE running and reachable via HTTPS
 - [ ] Root password captured
+- [ ] 2FA enabled for root and administrators
 - [ ] Container registry enabled
 - [ ] Backup strategy noted (chapter 21)
 
@@ -79,14 +80,32 @@ sudo cat /etc/gitlab/initial_root_password
 
 Log in at `https://gitlab.<YOUR_DOMAIN>` as `root`, change password immediately.
 
-### 6. Add SSH public key
+### 6. Enable two-factor authentication
+
+Enable 2FA immediately for `root`:
+
+1. Open **Edit profile → Access → Password and authentication**.
+2. Under **Two-factor authentication**, choose **Enable two-factor
+   authentication**.
+3. Scan the QR code with an authenticator app and enter the six-digit code.
+4. Store the recovery codes in the password manager.
+
+Create a separate named administrator account and enable 2FA for it as well.
+Do not use `root` for routine administration.
+
+After confirming that recovery codes and the separate administrator account
+work, require 2FA for all users under **Admin Area → Settings → General →
+Sign-in restrictions → Two-factor authentication**. Use a grace period only if
+needed for onboarding.
+
+### 7. Add SSH public key
 
 As root (or new admin user):
 
 1. **Preferences → SSH Keys**
 2. Paste `~/.ssh/id_ed25519_gitlab.pub` from chapter 07
 
-### 7. Enable Container Registry
+### 8. Enable Container Registry
 
 In `gitlab.rb` (often enabled by default with `registry_external_url`):
 
@@ -103,14 +122,14 @@ sudo gitlab-ctl reconfigure
 
 Add DNS A record for `registry.<YOUR_DOMAIN>` if separate hostname.
 
-### 8. Create groups and projects (skeleton)
+### 9. Create groups and projects (skeleton)
 
 Via UI:
 
 - Group: `lab`
 - Projects: `gitops`, `drupal-site`, `wordpress-site`, `symfony-app`
 
-### 9. Backup (preview)
+### 10. Backup (preview)
 
 GitLab backup command (full backup in chapter 21):
 
@@ -129,6 +148,7 @@ ssh -T git@gitlab.<YOUR_DOMAIN>
 UI checklist:
 
 - [ ] Login works
+- [ ] 2FA enabled for root and administrators
 - [ ] SSH clone works: `git clone git@gitlab.<YOUR_DOMAIN>:lab/gitops.git`
 - [ ] Registry UI visible under Deploy → Container Registry
 

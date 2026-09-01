@@ -10,10 +10,10 @@ Install Docker Engine, Docker Compose plugin, and BuildKit for local builds and 
 
 ## Goals
 
-- [ ] Docker Engine installed
-- [ ] Docker Compose v2 plugin available
-- [ ] BuildKit enabled
-- [ ] User in `docker` group
+- [x] Docker Engine installed
+- [x] Docker Compose v2 plugin available
+- [x] BuildKit enabled
+- [x] User in `docker` group
 
 ## Steps
 

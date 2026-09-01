@@ -10,11 +10,11 @@ Secure the fresh Ubuntu install: dedicated admin user (if needed), SSH keys, dis
 
 ## Goals
 
-- [ ] Admin user with sudo access
-- [ ] SSH key authentication only
-- [ ] UFW firewall enabled with minimal open ports
-- [ ] Fail2Ban protecting SSH
-- [ ] Automatic security updates enabled
+- [x] Admin user with sudo access
+- [x] SSH key authentication only
+- [x] UFW firewall enabled with SSH restricted to the local network
+- [x] Fail2Ban protecting SSH
+- [x] Automatic security updates enabled
 
 ## Steps
 
@@ -77,16 +77,62 @@ sudo systemctl restart ssh
 
 ### 4. Configure UFW
 
-Allow SSH first, then enable:
+Identify the local network CIDR before adding the SSH rule:
+
+```bash
+ip -4 route
+```
+
+Use the subnet shown for the LAN route, for example `192.168.1.0/24`.
+Allow SSH only from that subnet:
 
 ```bash
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
-sudo ufw allow OpenSSH
+sudo ufw allow from 192.168.1.0/24 to any port 22 proto tcp
 # HTTP/HTTPS for Traefik — add now or in chapter 14
 sudo ufw allow 80/tcp
 sudo ufw allow 443/tcp
 sudo ufw enable
+sudo ufw status verbose
+```
+
+Replace `192.168.1.0/24` with the actual LAN CIDR. Do not use
+`sudo ufw allow OpenSSH`, because that allows SSH from any source.
+
+Keep the current SSH session open and test a second SSH connection from
+another device on the local network before closing the original session.
+If the server is reachable over IPv6, apply an equivalent IPv6 restriction
+or disable IPv6 SSH exposure. Remove any internet-facing router port
+forward for TCP port 22.
+
+When a VPN is configured later, add its VPN subnet explicitly, for example:
+
+```bash
+sudo ufw allow from 10.8.0.0/24 to any port 22 proto tcp
+```
+
+Use the actual subnet configured by OpenVPN, WireGuard, or another VPN;
+do not add this example rule unchanged unless it matches the VPN network.
+
+To disable a UFW rule, first list the rules with their numbers:
+
+```bash
+sudo ufw status numbered
+```
+
+Delete the unwanted rule by number, or repeat the original rule after
+`delete`, for example:
+
+```bash
+sudo ufw delete 3
+sudo ufw delete allow 80/tcp
+```
+
+Restart UFW after changing its configuration:
+
+```bash
+sudo systemctl restart ufw
 sudo ufw status verbose
 ```
 

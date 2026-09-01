@@ -11,10 +11,10 @@ Configure a static IP, hostname, DNS, and timezone so services and DNS records r
 
 ## Goals
 
-- [ ] Static IP via Netplan
-- [ ] Hostname set
-- [ ] DNS resolvers configured
-- [ ] Network persists after reboot
+- [x] Static IP via Netplan
+- [x] Hostname set
+- [x] DNS resolvers configured
+- [x] Network persists after reboot
 
 ## Steps
 
@@ -57,6 +57,35 @@ Replace:
 - `enp2s0` — your interface
 - `192.168.1.100` — chosen static IP
 - `192.168.1.1` — your router/gateway
+
+Secure the configuration file before applying it:
+
+```bash
+sudo chown root:root /etc/netplan/00-installer-config.yaml
+sudo chmod 600 /etc/netplan/00-installer-config.yaml
+```
+
+If `/etc/netplan/50-cloud-init.yaml` also exists and contains
+`dhcp4: true`, cloud-init will add a DHCP address alongside the static
+address. Disable cloud-init network configuration so it does not recreate
+the conflicting file:
+
+```bash
+sudo nano /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+```
+
+Add:
+
+```yaml
+network: {config: disabled}
+```
+
+Then remove the generated Netplan file and regenerate the configuration:
+
+```bash
+sudo rm /etc/netplan/50-cloud-init.yaml
+sudo netplan generate
+```
 
 Apply:
 
@@ -115,6 +144,8 @@ ip -4 addr show
 | Problem | Fix |
 |---------|-----|
 | `netplan try` fails | Check YAML indentation (spaces, not tabs) |
+| `Permissions for /etc/netplan/*.yaml are too open` | Run `sudo chown root:root /etc/netplan/00-installer-config.yaml` and `sudo chmod 600 /etc/netplan/00-installer-config.yaml` |
+| Two IPv4 addresses appear | Check for `/etc/netplan/50-cloud-init.yaml` with `dhcp4: true`; disable cloud-init network configuration as shown above, remove the file, and run `sudo netplan generate` |
 | No internet | Verify gateway IP; test router ping |
 | Wrong interface name | Use `ip link`; update YAML |
 
