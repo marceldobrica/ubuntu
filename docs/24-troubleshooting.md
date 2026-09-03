@@ -48,6 +48,42 @@ free -h
 
 Reduce memory: disable bundled Prometheus, reduce unicorn/puma workers in `gitlab.rb`.
 
+### GitLab hostname returns 406 while the server is up or down
+
+If `curl` returns the same 406 response regardless of GitLab's state, first
+identify which layer generated it:
+
+```bash
+curl -sS -D - -o /dev/null https://gitlab.<YOUR_DOMAIN>
+curl -sS -D - -o /dev/null http://gitlab.<YOUR_DOMAIN>
+dig gitlab.<YOUR_DOMAIN> A +short
+dig gitlab.<YOUR_DOMAIN> CNAME +short
+```
+
+Headers such as `server: cloudflare`, a Cloudflare Ray ID, or a fixed
+redirect target indicate that Cloudflare is responding before the origin.
+Check the hostname's DNS record, Tunnel published application, Redirect Rules,
+Workers, and Access application. Remove any stale duplicate DNS record and
+correct invalid redirect targets such as `https://255.255.255.255/`.
+
+Only after the public route reaches the host should you test the origin
+directly:
+
+```bash
+sudo ss -tlnp | grep -E ':(80|443)\b'
+sudo gitlab-ctl status
+curl -I http://127.0.0.1
+```
+
+If the public request has no Cloudflare headers and the local request also
+returns 406, inspect the GitLab nginx logs and any ModSecurity or reverse-proxy
+configuration on the host:
+
+```bash
+sudo gitlab-ctl tail nginx
+sudo journalctl -u nginx --no-pager -n 100
+```
+
 ### Runner jobs pending
 
 ```bash
