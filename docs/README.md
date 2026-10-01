@@ -39,6 +39,7 @@ Step-by-step guide to build a single-server development lab that grows into a ch
 | 23 | [Scaling](./23-scaling.md) | Draft |
 | 24 | [Troubleshooting](./24-troubleshooting.md) | Draft |
 | 25 | [Appendix](./25-appendix.md) | Draft |
+| 26 | [Standalone K3s Platform Installation](./26-k3s-platform-installation.md) | Draft |
 
 ## Adaptations from the original plan
 
@@ -46,6 +47,7 @@ Step-by-step guide to build a single-server development lab that grows into a ch
 - **Renumbered 17→19 through 23→25** — CI/CD, monitoring, backup, security, scaling, troubleshooting, appendix.
 - **Split concerns clearly** — Traefik (ingress) and cert-manager (certificates) stay separate; GitOps repo comes before app platforms.
 - **Single-server first** — every chapter defaults to one MiniPC; scaling is deferred to chapter 23.
+- **Standalone platform path** — chapter 26 is an independent Ubuntu → K3s → Traefik → Argo CD → GitLab → Harbor runbook. It does not require the earlier draft chapters.
 
 ## Repository layout
 

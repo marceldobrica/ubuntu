@@ -261,8 +261,9 @@ nobind
 persist-key
 persist-tun
 remote-cert-tls server
-data-ciphers AES-256-GCM:AES-128-GCM
 auth SHA256
+ncp-ciphers AES-256-GCM:AES-128-GCM
+cipher AES-256-GCM
 verb 3
 
 <ca>
@@ -277,6 +278,21 @@ Paste the contents of laptop.key here
 <tls-crypt>
 Paste the contents of ta.key here
 </tls-crypt>
+```
+
+Ubuntu 20.04 commonly ships OpenVPN 2.4, which does not recognize
+`data-ciphers`. The `ncp-ciphers` and `cipher` lines above are the
+OpenVPN 2.4-compatible form. Check the installed version with:
+
+```bash
+openvpn --version
+```
+
+If the client reports OpenVPN 2.5 or newer, replace those two lines with:
+
+```conf
+data-ciphers AES-256-GCM:AES-128-GCM
+data-ciphers-fallback AES-256-GCM
 ```
 
 Import `laptop.ovpn` into an OpenVPN client, connect, and then SSH to the

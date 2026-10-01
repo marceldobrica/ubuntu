@@ -16,6 +16,7 @@ Documentation for building a **GitLab + GitLab Runner + K3s + ArgoCD** developme
 | [08 — GitLab CE](./docs/08-gitlab-ce.md) | Git + CI platform |
 | [11 — K3s](./docs/11-kubernetes-k3s.md) | Kubernetes cluster |
 | [12 — ArgoCD](./docs/12-argocd.md) | GitOps CD |
+| [26 — Standalone platform installation](./docs/26-k3s-platform-installation.md) | Ubuntu, K3s, Traefik, Argo CD, GitLab, Harbor |
 | [19 — CI/CD](./docs/19-cicd-pipeline.md) | Full pipeline |
 | [24 — Troubleshooting](./docs/24-troubleshooting.md) | When things break |
 
